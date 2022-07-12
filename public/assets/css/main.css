@@ -1,0 +1,148 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #d3e2f0;
+    height: 100vh;
+    text-align: center;
+}
+
+h1{
+    color: #264E85;
+    letter-spacing: 2px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 20px;
+    text-shadow: 0 0 10px #99b5de;
+}
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    margin: 15px auto;
+    padding: 6px;
+    color: #d3e2f0;
+    background-color: #264E85;
+    border: 2px solid #264E85;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+a:hover, a:focus{
+    color: #264E85;
+    background-color: #d3e2f0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    background-color: #9ECBF7;
+    text-transform: uppercase;
+    color: #264E85;
+    letter-spacing: 2px;
+    text-align: center;
+    display: flex;
+    margin: 10px auto;
+    width: 50%;
+    flex-direction: column;
+    border: 3px solid #264E85;
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 10px 10px 5px #1f3f6b;
+}
+
+input {
+    background-color: transparent;
+    border: 2px solid #264E85;
+    border-radius: 5px;
+    width: 50%;
+    max-width: 300px;
+    margin: 10px auto;
+    height: 30px;
+    text-align: center;
+    color: #264E85;
+    font-size: large;
+    transition: 0.3s;
+}
+
+input:focus {
+    border: 3px solid red;
+    width: 80%;
+    box-shadow: 0 0 15px #1f3f6b;
+}
+
+button {
+    font-size: large;
+    width: 200px;
+    height: 50px;
+    border: 3px solid #264E85;
+    border-radius: 10px;
+    background-color: #9ECBF7;
+    margin: auto;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+button:hover, button:focus {
+    background-color: #264E85;
+    width: 250px;
+    color: #9ECBF7;
+    border-color: red;
+    cursor: pointer;
+    box-shadow: 0px 0px 15px #1f3f6b;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.error {
+    background-color: tomato;
+    margin: 20px auto;
+    padding: 30px;
+    border: 2px solid rgb(171, 66, 48);
+}
+
+#log_err {
+    margin: 10px auto;
+    padding: 5px; 
+    color: red; 
+    border: 3px solid red; 
+    border-radius: 10px;
+}
+
+.anim {
+    animation: anim .3s ease 0s 1 normal ;
+}
+
+@keyframes anim {
+    0% {
+        transform: translateX(0px);
+    }
+    25% {
+        transform: translateX(10px);
+    }
+    50% {
+        transform: translateX(0px);
+
+    }
+    75% {
+        transform: translateX(-10px);
+
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+.disable {
+    display: none;
+}

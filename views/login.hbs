@@ -1,0 +1,49 @@
+<h1>Log into your account</h1>
+
+<form action="/main/login" method="post">
+
+<label>Login:
+<input type="text" name="login" autofocus placeholder="3 - 30 characters">
+</label><br>
+<label>Password:
+<input type="password" name="pass">
+</label><br>
+<div id="log_err" class="disable">
+<p>The values of login and password are incorrect. Please try again.</p>
+</div>
+<button id="send">Login</button>
+
+</form>
+
+<a href="/main/form">Create a new account</a>
+
+<script>
+
+const login = document.querySelector('[name="login"]');
+const pass = document.querySelector('[name="pass"]');
+const btnSend = document.querySelector('#send');
+
+btnSend.addEventListener('click', async e => {
+    e.preventDefault();
+    const answer = await fetch('/main/login', {
+        method: "POST",
+        body: JSON.stringify({login: login.value,  password: pass.value}),
+        headers: {
+		    'Content-Type': 'application/json'
+	    }
+    });
+    const info = await answer.text();
+    if (info === "ok") {
+        location.href=`/main/profile`;
+    } else {
+        document.querySelector('#log_err').classList.remove('disable');
+        document.querySelector('#log_err').classList.add('anim');
+        setTimeout(() => {
+            document.querySelector('#log_err').classList.remove('anim');
+        }, 300);
+
+    }
+});
+
+</script>
+

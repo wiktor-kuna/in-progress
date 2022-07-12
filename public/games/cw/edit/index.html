@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>crazy words - editor</title>
+    <link rel="stylesheet" href="./css/edit.css">
+</head>
+<body>
+    <div class="container">
+        <h1>crazy words - editor</h1>
+
+        <h5>wczytywanie bazy danych</h5>
+        <div class="container-flex">
+            <select name="data-base" class="data-bases">
+                <option value="demo">
+                    demo
+                </option>
+                <option value="lib">
+                    lib
+                </option>
+                
+            </select>
+            <input type="button" value="load" class="input-btn load-btn">
+        </div>
+
+        <h5>utwórz nową bazę</h5>
+        <div class="container-flex">
+            <input type="text" class="input create-base-name"></input>
+            <input type="button" value="create" class="input-btn create-btn">
+        </div>
+        
+        <h5>edytuj słowo</h5>
+        <div class="container-flex">
+            <select name="data-base" class="data-bases">
+                <option value="base1">
+                  slowo1
+                </option>
+                
+                <option value="base2">
+                    slowo2
+                </option>
+                <option value="base3">
+                    slowo3
+                </option>
+                <option value="base4">
+                    slowo4
+                </option>
+            </select>
+            <!-- <input type="button" value="load" class="input-btn load-btn"> -->
+        </div>
+
+        <h5>słowo pl</h5>
+        <input type="text" placeholder="pole wymagane" class="input word-pl"></input>
+        <h5>słowo ang</h5>
+        <input type="text" placeholder="pole wymagane" class="input word-en"></input>
+        <h5>zdanie pl</h5>
+        <input type="text" class="input sentence-pl"></input>
+        
+        <h5>zdanie ang</h5>
+        <input type="text" class="input sentence-en"></input>
+        <div class="container-flex">
+            <input type="button" value="save" class="input-btn save-word-btn">
+            <input type="button" value="delete" class="input-btn delete-word-btn">
+            <input type="button" value="add" class="input-btn add-word-btn">
+
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+</html>

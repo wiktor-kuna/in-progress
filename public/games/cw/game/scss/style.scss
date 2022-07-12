@@ -1,0 +1,339 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: rgb(68,68,68);
+    background: linear-gradient(90deg, rgba(68,68,68,1) 0%, rgba(51,51,51,1) 50%, rgba(68,68,68,1) 100%);
+    color: white;
+    position: relative;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    position: relative;
+    margin: auto;
+    padding: 0;
+    height: 95vh;
+    width: 95vw;
+    max-width: 900px;
+}
+
+.nav {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+    width: 100%;
+}
+
+.opt {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+    align-items: center;
+    border: 2px solid white;
+    cursor: pointer;
+    height: 40px;
+    width: 80px;
+    transition: .2s;
+    outline: none;
+    &:hover {
+        background-color: brown;
+    }
+}
+
+.letters {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    max-width: 90vw;
+    margin: 20px auto;
+}
+
+.rezerwa {
+    position: relative;
+    height: 80px;
+}
+
+.change {
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 500;
+}
+
+.change-flex {
+    max-width: 100%;
+    display: flex;
+    animation: .3s show ease forwards;
+}
+
+.hide-anim {
+    animation: .3s hide-anim ease forwards;
+}
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+        border-radius: 50%;
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        border-radius: 0;
+    }
+}
+
+@keyframes hide-anim {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+        border-radius: 0;
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+        border-radius: 50%;
+    }
+}
+
+.word {
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+
+    .game-over-info {
+        padding: 5px;
+        color: royalblue;
+    }
+
+    h2 {
+        margin: 20px 0;
+    }
+
+    h3 {
+        margin-bottom: 20px;
+        color: lime;
+    }
+
+    h5 {
+        color: burlywood;
+    }
+
+}
+
+.change-box {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+    margin: 5px 10px;
+    z-index: 500;
+
+    &:hover {
+        background-color: brown;
+    }
+}
+
+.box {
+    position: relative;
+    height: 50px;
+    width: 50px;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: .2s;
+    z-index: 50;
+
+    h4 {
+        position: absolute;
+        z-index: -5;
+        text-transform: uppercase;
+    }
+
+    &:hover {
+        z-index: 50;
+        background-color: brown;
+    }
+}
+
+.color {
+    background-color: brown;
+}
+
+.active {
+    background-color: indigo;
+    border: 4px solid royalblue;
+    border-radius: 20px;
+}
+
+button {
+    height: 50px;
+    width: 120px;
+    padding: 5px;
+    border-radius: 15px;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+}
+
+.click {
+    animation: click-anim .3s ease-in forwards;
+}
+
+@keyframes click-anim {
+    0% {
+        background-color: transparent;
+        transform: rotateZ(0deg) scale(1);
+        border-radius: 0;
+    }
+
+    50% {
+        background-color: rgba(255, 120, 120, .6);
+        transform: rotateZ(180deg) scale(.7);
+        border-radius: 50%;
+    }
+
+    100% {
+        background-color: gold;
+        transform: rotateZ(360deg) scale(1);
+        border-radius: 0;
+    }
+}
+
+.win {
+    animation: win-anim 1s ease-in both infinite;
+}
+
+@keyframes win-anim {
+    0% {
+        border-color: white;
+        border-radius: 0;
+        border-width: 2px;
+        color: lime;
+        transform: scale(1);
+    }
+
+    50% {
+        border-color: lime;
+        border-radius: 50%;
+        border-width: 5px;
+        color: white;
+        transform: scale(.8);
+    }
+
+    100% {
+        border-color: white;
+        transform: scale(1);
+        border-width: 2px;
+        color: lime;
+        border-radius: 0;
+    }
+}
+
+svg {
+    pointer-events: none;
+    transition: .2s;
+}
+
+.opt.active svg {
+    animation: .8s opt-active linear infinite;
+}
+
+@keyframes opt-active {
+    0% {
+        transform: translateX(0px);
+        color: red;
+    }
+
+    25% {
+        transform: translateX(5px);
+        color: white;
+    }
+
+    50% {
+        transform: translateX(0px);
+        color: red;
+    }
+
+    75% {
+        transform: translateX(-5px);
+        color: white;
+    }
+
+    100% {
+        transform: translateX(0px);
+        color: red;
+    }
+}
+
+
+.volume {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: .1s;
+    .non-active {
+        display: none;
+    }
+    &:hover{
+        color: lime;
+    }
+}
+
+.skip-btn {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    animation: 1.5s rotation ease infinite;
+    cursor: pointer;
+    transition: .2s;
+    &:hover {
+        color: gold;
+    }
+}
+
+@keyframes rotation {
+    0% {transform: rotateZ(0deg);}
+    100% {transform: rotateZ(360deg);}
+}

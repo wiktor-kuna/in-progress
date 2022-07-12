@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    position: relative;
+    background-color: #333;
+    color: white;
+    text-transform: uppercase;
+}
+
+.container {
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+h1 {
+    margin: 8px;
+}
+
+.input, select {
+    margin: 8px auto;
+    height: 30px;
+    width: 300px;
+    text-align: center;
+}
+option {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.input-btn {
+    margin: 8px auto;
+    height: 30px;
+    width: 100px;
+    cursor: pointer;
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    text-transform: uppercase;
+    &:hover {
+        background-color: white;
+        color: black;
+    }
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.container-flex {
+    display: flex;
+    flex-direction: row;
+    width: 300px;
+    margin: auto;
+    }
+
+

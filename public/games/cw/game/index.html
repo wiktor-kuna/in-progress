@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crazy Words</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+      a{
+        margin: 20px auto;
+      }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="volume">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-volume" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M15 8a5 5 0 0 1 0 8" />
+                <path d="M17.7 5a9 9 0 0 1 0 14" />
+                <path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" />
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-volume-3 non-active" width="30" height="30" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5" />
+                <path d="M16 10l4 4m0 -4l-4 4" />
+              </svg>
+        </div>
+
+        <div class="word">
+            <h2>crazy words</h2>
+            <h4>your coins: <span id="coins"></span></h4>
+            <p class='word-counter'></p>
+            <h6 class='search-word-label'>szukane słowo w wersji pl:</h6>
+            <h3></h3>
+            <h6 class='example-sentence-label'>przykładowe zdanie z tym słowem:</h6>
+            <h5 class="pl-sentence"></h5>
+            <h5 class="en-sentence"></h5>
+            <h4 class="game-over-info"></h4>
+        </div>
+
+        <div class="nav">
+
+            <div class="opt opt-move opt-move-l"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M20 15h-8v3.586a1 1 0 0 1 -1.707 .707l-6.586 -6.586a1 1 0 0 1 0 -1.414l6.586 -6.586a1 1 0 0 1 1.707 .707v3.586h8a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1z" />
+              </svg> </div>
+            <div class="opt opt-change"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-replace" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <rect x="3" y="3" width="6" height="6" rx="1" />
+                <rect x="15" y="15" width="6" height="6" rx="1" />
+                <path d="M21 11v-3a2 2 0 0 0 -2 -2h-6l3 3m0 -6l-3 3" />
+                <path d="M3 13v3a2 2 0 0 0 2 2h6l-3 -3m0 6l3 -3" />
+              </svg>
+              </div>
+            <div class="opt opt-move opt-move-r"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-big-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                <path d="M4 9h8v-3.586a1 1 0 0 1 1.707 -.707l6.586 6.586a1 1 0 0 1 0 1.414l-6.586 6.586a1 1 0 0 1 -1.707 -.707v-3.586h-8a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1z" />
+              </svg>
+              </div>
+            </div>
+            <div class="rezerwa">
+              <div class="change">
+                  <div class="change-box change-1"></div>
+                  <div class="change-box change-2"></div>
+                  <div class="change-box change-3"></div>
+              </div>
+            </div>
+        <div class="letters"></div>
+        <div class="skip-btn"><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-refresh" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+          <path d="M20 11a8.1 8.1 0 0 0 -15.5 -2m-.5 -4v4h4" />
+          <path d="M4 13a8.1 8.1 0 0 0 15.5 2m.5 4v-4h-4" />
+        </svg></div>
+        <a href="/static/games/cw/">
+          <button>
+      back
+      </button>
+    </div>
+    <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

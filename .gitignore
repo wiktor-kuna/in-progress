@@ -1,0 +1,6 @@
+node_modules
+.DS_Store
+public/.DS_Store
+db/games/cw/.DS_Store
+public/games/cw/.DS_Store
+public/games/cw/game/.DS_Store

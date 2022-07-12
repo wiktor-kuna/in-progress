@@ -1,0 +1,16 @@
+<h1>Hi, {{login}}</h1>
+<h3>Your coins: {{coins}}</h3>
+
+<a href="/games/cw">Play Crazy Words</a>
+<a href="/chat">Global chat</a>
+<a href="/main/logout" id="delete">Delete this account</a>
+<a href="/main/logout">Logout</a>
+
+<script>
+document.querySelector('#delete').addEventListener('click', e => {
+    e.preventDefault();
+    if(confirm('Do you really want to delete your account?')) {
+        window.location.replace('/main/delete');
+    }
+})
+</script>

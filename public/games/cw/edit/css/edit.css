@@ -1,0 +1,75 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  background-color: #333;
+  color: white;
+  text-transform: uppercase;
+}
+
+.container {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  margin: 8px;
+}
+
+.input, select {
+  margin: 8px auto;
+  height: 30px;
+  width: 300px;
+  text-align: center;
+}
+
+option {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input-btn {
+  margin: 8px auto;
+  height: 30px;
+  width: 100px;
+  cursor: pointer;
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+  text-transform: uppercase;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.input-btn:hover {
+  background-color: white;
+  color: black;
+}
+
+.container-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  width: 300px;
+  margin: auto;
+}
+/*# sourceMappingURL=edit.css.map */

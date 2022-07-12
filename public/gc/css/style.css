@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    box-sizing:content-box;
+    background-color: #2a2a72;
+    background-image: linear-gradient(315deg, #2a2a72 0%, #009ffd 74%);
+    width: 100vw;
+    height: 100vh;
+}
+
+.container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+}
+
+label {
+    text-transform: uppercase;
+    color: white;
+    text-shadow: black 0px 0px 10px;
+}
+
+input {
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.input, .nick {
+    width: 50%;
+    height: 20px;
+    margin: 15px 0;
+    border-radius: 15px;
+    transition: .3s;
+}
+
+
+.input:focus {
+    width: 100%;
+}
+
+/* .input {
+    transition: .3s;
+} */
+
+/* .nick {
+    width: 50%;
+} */
+
+/* .nick::placeholder{
+    color: navy;
+    text-transform: uppercase;
+    text-shadow: oldlace 0 0 10px;
+} */
+
+a {
+    /* height: 25px; */
+    /* width: 80px; */
+    margin: 5px auto;
+    padding: 5px 20px;
+    background-color: #264E85;
+    border: 1px solid white;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #9ECBF7;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+}
+
+a:hover, a:focus {
+    background-color: #9ECBF7;
+    color: #264E85;
+}
+
+.field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+    margin-top: 15px;
+}
+
+.content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100vw;
+border-radius: 10px;
+}
+
+p {
+    margin: 0;
+    padding: 5px;
+    text-align: center;
+    text-shadow: white 0 0 10px;
+}
+
+p.header {
+    font-size: small;
+    color: #4e4e4e;
+}
+
+.message {
+    border-radius: 15px;
+    padding: 2px;
+    margin: 2px;
+    width: 50%;
+    animation: input_anim forwards .3s;
+}
+
+/* .mymessage {
+    left: 30px;
+} */
+
+@keyframes input_anim {
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+    }
+    
+}
