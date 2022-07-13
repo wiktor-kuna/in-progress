@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Czas generowania: 05 Lip 2022, 23:37
+-- Czas generowania: 14 Lip 2022, 00:03
 -- Wersja serwera: 10.4.17-MariaDB
 -- Wersja PHP: 7.2.34
 
@@ -35,7 +35,8 @@ CREATE TABLE `users` (
   `email` varchar(30) NOT NULL,
   `password` varchar(60) NOT NULL,
   `isActive` tinyint(1) DEFAULT NULL,
-  `isAdmin` tinyint(1) DEFAULT NULL
+  `isAdmin` tinyint(1) DEFAULT NULL,
+  `coins` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
