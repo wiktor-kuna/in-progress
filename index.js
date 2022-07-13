@@ -7,7 +7,7 @@ require('./utils/db');
 const rateLimit = require('express-rate-limit')
 const limiter = rateLimit({
 	windowMs: 5 * 60 * 1000, 
-	max: 100,
+	max: 200,
 	standardHeaders: true, 
 	legacyHeaders: false, 
 });
@@ -22,7 +22,10 @@ const {gamesRouter} = require('./routers/gamesRouter');
 const http = require('http');
 const server = http.createServer(app);
 const { Server } = require('socket.io');
+const { UserRecord } = require('./records/user.record');
 const io = new Server(server);
+const {logUsersList} = require('./routers/mainRouter'); 
+
 
 app.use(limiter)
 app.use(cors({
@@ -44,7 +47,19 @@ app.set('views', './views');
 
 app.use('/main', mainRouter);
 app.use('/games', gamesRouter);
-app.get('/chat', (req, res) => {
+app.get('/chat', async (req, res) => {
+    console.log(logUsersList);
+    if (
+        (req.cookies.log !== 'true') ||
+        (logUsersList[req.cookies.user.login] !== req.cookies.user.id) ||
+        (!(await UserRecord.isActive(req.cookies.user.login)))
+    ) {
+        res.cookie('log', 'false');
+        res.cookie('user', {});
+        res.redirect('/main/login');
+        res.end();
+    }
+
     res.render('chat', {layout: 'chat', login: req.cookies.user.login});
 });
 
@@ -79,7 +94,6 @@ io.on('connection', (socket) => {
         channel.content = [];
         io.emit('reset', '');
       } else {
-        // console.log(`${message.nick} [${date.toLocaleTimeString('pl')}]:\n${message.input}\n`);
         io.emit('answer', (() => JSON.stringify({...message, date: date.toLocaleTimeString('pl')}))());
         channel.content.push({...message, date: date.toLocaleTimeString('pl')});}
     });

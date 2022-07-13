@@ -4,6 +4,9 @@ const {hash, compare} = require('bcrypt');
 
 class UserRecord{
     constructor(obj, reg = false) {
+        if (obj.login.includes("/") || obj.login.includes("?")) {
+            throw new ValidationError(`Login can't includes "?" and "/" signs.`)
+        }
         if (obj.login.length < 3 || obj.login.length > 30) {
             throw new ValidationError('Login must have at least 3 characters and maximum of 30 characters.');
         }
@@ -38,11 +41,26 @@ class UserRecord{
             coins,
         });
     }
+
     static async loadCoins(login) {
         const coins =  await pool.execute("SELECT `coins` FROM `users` WHERE `login` = :login;", {
             login,
         });
         return coins[0][0].coins;
+    }
+
+    static async isActive(login) {
+        const isActive =  await pool.execute("SELECT `isActive` FROM `users` WHERE `login` = :login;", {
+            login,
+        });
+        return isActive[0][0].isActive;
+    }
+
+    static async isAdmin(login) {
+        const isAdmin =  await pool.execute("SELECT `isAdmin` FROM `users` WHERE `login` = :login;", {
+            login,
+        });
+        return isAdmin[0][0].isAdmin;
     }
 
     async insert() {
@@ -60,8 +78,9 @@ class UserRecord{
             return this.login;
         } catch (err) {
             if (err.errno === 1062) {
-                throw new ValidationError(`Sorry. The login ${this.login} is already exists. Please choose another one.`);
-            }
+                throw new ValidationError(`Sorry. The login ${this.login} already exists. Please choose another one.`);
+            } else if (err.code === 'ECONNREFUSED'){
+                throw new ValidationError(`Sorry. You are not connected to a database`);            }
         }
     }
 
@@ -98,8 +117,36 @@ class UserRecord{
         }
     }
 
+    static async getToActivate() {
+        const [results] = await pool.execute('SELECT `login`, `isAdmin`, `isActive` FROM `users`');
+        return results;
+    }
+
+    static async changeActive(login) {
+        const [[result]] = await pool.execute('SELECT `isActive` FROM `users` WHERE `users`.`login` = :login;', {
+            login
+        });
+        console.log(result.isActive);
+            await pool.execute("UPDATE `users` SET `isActive` = :isActive WHERE `users`.`login` = :login;", {
+                isActive: result.isActive ? null : 1,
+                login,
+            });
+    }
+
+    static async changeAdmin(login) {
+        const [[result]] = await pool.execute('SELECT `isAdmin` FROM `users` WHERE `users`.`login` = :login;', {
+            login
+        });
+        console.log(result.isAdmin);
+            await pool.execute("UPDATE `users` SET `isAdmin` = :isAdmin WHERE `users`.`login` = :login;", {
+                isAdmin: result.isAdmin ? null : 1,
+                login,
+            });
+    }
+
     static async all() {
         const results = await pool.execute('SELECT * FROM `users`');
+        console.log(results[0]);
         return results[0];
     }
 }

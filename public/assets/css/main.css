@@ -146,3 +146,12 @@ button:hover, button:focus {
 .disable {
     display: none;
 }
+
+li {
+    display: block;
+    width: 400px;
+    padding: 20px;
+    margin: 5px auto;
+    border: 2px solid #264E85;
+    border-radius: 15px;
+}

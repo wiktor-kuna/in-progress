@@ -39,13 +39,13 @@ btnSend.addEventListener('click', async e => {
 	        }
         });
         const data = await info.text();
-        console.log(data)
         alert(data);
         if (data==="OK. User is added.") {
             location.href = "/main/login";
         }
 
     } catch(e) {
+        alert("lalala", e.message)
         console.log("Wystąpił błąd!", e)
     }
 });

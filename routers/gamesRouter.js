@@ -8,10 +8,13 @@ gamesRouter
         res.end();
     })
 
+    .get('/cw/:', (req, res) => {
+        
+    })
+
     .get('/cw/db/', async (req, res) => {
         const data = await readFile(__dirname + '/../db/games/cw/questions.json', 'utf-8');
-        const newData = JSON.parse(data);
-        res.json(newData);
+        res.json(JSON.parse(data));
     })
 
 module.exports = {gamesRouter};

@@ -1,0 +1,12 @@
+<h1>Control accounts panel</h1>
+{{#if isAdmin}}
+    <h3>You are logged on as an admin user.</h3>
+{{/if}}
+
+<ul>
+    {{#each results}}
+        <li><strong>{{this.login}}</strong> <a href="/main/control/activate/{{this.login}}">{{#if this.isActive}} is active {{else}} is not active {{/if}}</a> and <a href="/main/control/admin/{{this.login}}">{{#if this.isAdmin}} is admin {{else}} is not admin{{/if}}</a>.</li>
+    {{/each}}
+</ul>
+    <a href="/main/profile">Profile</a>
+    <a href="/main/logout">Logout</a>

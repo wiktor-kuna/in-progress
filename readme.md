@@ -1,14 +1,11 @@
 # In progress App
 ## author: Wiktor Kuna
-## Why I'm writing this app?
-There are a lot of reasons...
-- I must
-- I have to
-- I should
-- And many others :)
+[This app is in progress :)]
 
+## About In progress App
+In progress App is for learning english. 0.1.0 version contains Crazy Words game (without words generator) and global chat for contact with currently active users. You can also create and delete your user account.
 ## About configuration
-1. You have to configure and run your SQL database (the draw of DB you can found in **apka_test.sql** file). 
+1. You have to configure and run your SQL database (the draft of DB you can found in **apka_test.sql** file). 
 
     > The configuration of connection with database is in ***./utils/db.js*** file.
 

@@ -1,4 +1,4 @@
-const API_link = "http://localhost:3000/api/";
+const API_link = "/games/cw";
 
 const loadDataBtn = document.querySelector('.load-btn');
 const createDataBtn = document.querySelector('.create-btn');

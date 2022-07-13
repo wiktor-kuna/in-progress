@@ -2,11 +2,7 @@ const express = require('express');
 const mainRouter = express.Router();
 const { UserRecord } = require('../records/user.record');
 const {v4: uuid} = require('uuid');
-const { param } = require('express/lib/router');
-// const {hash, compare} = require('bcrypt');
-// const { ValidationError } = require('../utils/errors');
 const logUsersList = {};
-// const logAdminsList = {};
 
 mainRouter
     .get('/', (req, res) => {
@@ -71,7 +67,43 @@ mainRouter
             res.redirect('/main/login');
             res.end();
         } else {
-            res.render('profile', { login: req.cookies.user.login, coins: await UserRecord.loadCoins(req.cookies.user.login)});
+            res.render('profile', { 
+                login: req.cookies.user.login, 
+                coins: await UserRecord.loadCoins(req.cookies.user.login),
+                isActive: await UserRecord.isActive(req.cookies.user.login), 
+                isAdmin: await UserRecord.isAdmin(req.cookies.user.login)});
+        }
+    })
+
+    .get('/control/:param?/:user?', async (req, res) => {
+        if (
+            (req.cookies.log !== 'true') ||
+            (logUsersList[req.cookies.user.login] !== req.cookies.user.id) ||
+            (await UserRecord.isAdmin(req.cookies.user.login) !== 1)
+        ) {
+            res.cookie('log', 'false');
+            res.cookie('user', {});
+            res.redirect('/main/login');
+            res.end();
+        } else if (req.params.param && req.params.user) {
+            const user = req.params.user;
+            const param = req.params.param;
+            if (param === "activate") {
+                await UserRecord.changeActive(user);
+                res.redirect('/main/control');
+                res.end();
+            } else if (param === "admin") {
+                await UserRecord.changeAdmin(user);
+                res.redirect('/main/control');
+                res.end();
+            }
+        }
+        
+        else {    
+            res.render('control', {
+                isAdmin: await UserRecord.isAdmin(req.cookies.user.login),
+                results: await UserRecord.getToActivate(),           
+            });
         }
     })
 
@@ -88,8 +120,10 @@ mainRouter
                 email: req.body.email,
                 password: req.body.password,
             }, true);
-            await person.insert();
-            res.end("OK. User is added.");
+            const login = await person.insert();
+            if (login === req.body.login) {
+                res.end("OK. User is added.")
+            } 
         } catch (e) {
             res.end(e.message);
         }
@@ -97,7 +131,6 @@ mainRouter
 
     .post('/coins/:what?', async (req, res) => {
 
-        
         const login = req.cookies.user.login;
         const coins = await UserRecord.loadCoins(login);
         if (req.params.what === "add") {
@@ -108,4 +141,11 @@ mainRouter
         }
     })
 
-module.exports = {mainRouter}
+    .get('/test', async (req, res) => {
+        await UserRecord.all();
+        res.end();
+    })
+module.exports = {
+    mainRouter,
+    logUsersList
+}
