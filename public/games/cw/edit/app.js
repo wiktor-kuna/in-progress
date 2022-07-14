@@ -1,5 +1,3 @@
-const API_link = "/games/cw";
-
 const loadDataBtn = document.querySelector('.load-btn');
 const createDataBtn = document.querySelector('.create-btn');
 const saveWordBtn = document.querySelector('.save-word-btn');
@@ -11,14 +9,22 @@ const inputWordEn = document.querySelector('.word-en');
 const inputSentencePl = document.querySelector('.sentence-pl');
 const inputSentenceEn = document.querySelector('.sentence-en');
 
-loadDataBtn.addEventListener('click', async () => {
-    // inputWordPl.value = document.querySelector('select').value;
-    try {
-        const response = await fetch(`${API_link}`);
+const selectDB = document.querySelector('.data-bases');
 
+loadDataBtn.addEventListener('click', async () => {
+    try {
+        const response = await fetch(`/games/cw/editor`);
+        const {login} = await response.json();
+        const response2 = await fetch(`/games/cw/editor/${login}`);
+        const list = await response2.json();
+        selectDB.innerHTML = '';
+        list.forEach(val => {
+            const newOpt = document.createElement('option');
+            newOpt.appendChild(document.createTextNode(val));
+            selectDB.appendChild(newOpt);
+        });
     } catch (e) {
         inputWordEn.value = 'błąd';
-        // console.log(e);
     }
 });
 

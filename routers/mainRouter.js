@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs/promises');
 const mainRouter = express.Router();
 const { UserRecord } = require('../records/user.record');
 const {v4: uuid} = require('uuid');
@@ -20,6 +21,8 @@ mainRouter
     .get('/delete', async (req, res) => {
         if ((req.cookies.log === 'true') && (logUsersList[req.cookies.user.login] === req.cookies.user.id)) {
             await UserRecord.delete(req.cookies.user.login);
+            delete logUsersList[req.cookies.user.login];
+            await fs.rmdir(__dirname + `/../db/games/cw/users/${req.cookies.user.login}`, {recursive: true});
             res.redirect('/main/logout');
             res.end();
         } else {
@@ -122,7 +125,8 @@ mainRouter
             }, true);
             const login = await person.insert();
             if (login === req.body.login) {
-                res.end("OK. User is added.")
+                await fs.mkdir(__dirname + `/../db/games/cw/users/${login}`, {recursive: true});
+                res.end("OK. User is added.");
             } 
         } catch (e) {
             res.end(e.message);
@@ -141,10 +145,11 @@ mainRouter
         }
     })
 
-    .get('/test', async (req, res) => {
-        await UserRecord.all();
-        res.end();
-    })
+    // .get('/test', async (req, res) => {
+    //     await UserRecord.all();
+    //     res.end();
+    // })
+
 module.exports = {
     mainRouter,
     logUsersList

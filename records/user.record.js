@@ -101,7 +101,6 @@ class UserRecord{
         try {
             const [results] = await pool.execute('SELECT * FROM `users` WHERE `login` = :login;', {
                 login,
-                // password
             }); 
             const comp = await compare(password, results[0].password);
             console.log(comp);
