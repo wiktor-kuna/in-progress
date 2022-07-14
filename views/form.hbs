@@ -1,4 +1,4 @@
-<h1>Register new user</h1>
+<h1>Register a new user</h1>
 
 <form action="/main/form" method="post">
 <label>Login:
@@ -45,8 +45,8 @@ btnSend.addEventListener('click', async e => {
         }
 
     } catch(e) {
-        alert("lalala", e.message)
-        console.log("Wystąpił błąd!", e)
+        alert(e.message)
+        console.log("Error occurred!", e)
     }
 });
 

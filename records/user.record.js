@@ -5,7 +5,7 @@ const {hash, compare} = require('bcrypt');
 class UserRecord{
     constructor(obj, reg = false) {
         if (obj.login.includes("/") || obj.login.includes("?")) {
-            throw new ValidationError(`Login can't includes "?" and "/" signs.`)
+            throw new ValidationError(`Login can't include "?" and "/" signs.`)
         }
         if (obj.login.length < 3 || obj.login.length > 30) {
             throw new ValidationError('Login must have at least 3 characters and maximum of 30 characters.');
@@ -80,7 +80,7 @@ class UserRecord{
             if (err.errno === 1062) {
                 throw new ValidationError(`Sorry. The login ${this.login} already exists. Please choose another one.`);
             } else if (err.code === 'ECONNREFUSED'){
-                throw new ValidationError(`Sorry. You are not connected to a database`);            }
+                throw new ValidationError(`Sorry. You are not connected to the database`);            }
         }
     }
 
